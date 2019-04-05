@@ -32,11 +32,56 @@
     <servlet-name>Redirect</servlet-name>
     <url-pattern>redirect</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>FilterCategory</servlet-name>
+    <servlet-class>controller.FilterCategory</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FilterCategory</servlet-name>
+    <url-pattern>filterCategory</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>FilterName</servlet-name>
+    <servlet-class>controller.FilterName</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FilterName</servlet-name>
+    <url-pattern>filterName</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ProductDetail</servlet-name>
+    <servlet-class>controller.ProductDetail</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProductDetail</servlet-name>
+    <url-pattern>productdetail</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AddCart</servlet-name>
+    <servlet-class>controller.AddCart</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddCart</servlet-name>
+    <url-pattern>addCart</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>LoaddataServlet</servlet-name>
+    <servlet-class>controller.LoaddataServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoaddataServlet</servlet-name>
+    <url-pattern>LoaddataServlet</url-pattern>
+  </servlet-mapping>
 
   <context-param>
     <param-name>dbURL</param-name>
     <param-value>jdbc:mysql://localhost:3306/onlineshopping</param-value>
   </context-param>
+
   
   
   

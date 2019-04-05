@@ -3,6 +3,7 @@ package controller;
 import dao.AccountsDAO;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +23,8 @@ public class LoginServlet extends HttpServlet{
 			int result = accountsDAO.checkLogin(username, password);
 			request.setAttribute("resultCode", result);
 			if (result == 0) {
+				Cookie cookie = new Cookie("uid", username);
+				response.addCookie(cookie);
 				response.sendRedirect("index.jsp");
 			} else {
 				/*PrintWriter out = response.getWriter();

@@ -76,15 +76,15 @@
 									if (request.getAttribute("resultCode")!=null) {
 								if ((int)request.getAttribute("resultCode") == -1) {
 								%>
-								<p>Username doesn't exist! Please sign up first.</p>
+								<p style="color: red;">Username doesn't exist! Please sign up first.</p>
 								<%
 								} else if ((int)request.getAttribute("resultCode") == -2) {
 								%>
-								<p>Wrong Password!</p>
+								<p style="color: red;">Wrong Password!</p>
 								<%
 									} else {
 								%>
-								<p>System maintaining. Please try later!</p>
+								<p style="color: red;">System maintaining. Please try later!</p>
 								<%
 									}
 									}

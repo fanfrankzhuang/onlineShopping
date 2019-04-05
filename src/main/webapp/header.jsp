@@ -29,11 +29,11 @@
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                aria-expanded="false">Shop</a>
                             <ul class="dropdown-menu">
-                                <li class="nav-item"><a class="nav-link" href="category.html">Shop Category</a></li>
-                                <li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
+                                <li class="nav-item"><a class="nav-link" href="category.jsp">Shop Category</a></li>
+                                <li class="nav-item"><a class="nav-link" href="single-product.jsp">Product Details</a></li>
                                 <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
                                 <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
-                                <li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
+                                <li class="nav-item"><a class="nav-link" href="cart.jsp">Shopping Cart</a></li>
                             </ul>
                         </li>
                         <li class="nav-item submenu dropdown">
@@ -59,7 +59,7 @@
                     <ul class="nav-shop">
                         <li class="nav-item"><button><i class="ti-search"></i></button></li>
                         <li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button> </li>
-                        <li class="nav-item"><a class="button button-header" href="#">Buy Now</a></li>
+                        <li class="nav-item"><a href="login.jsp">Log in|</a><a href="register.html">Sign up</a></li>
                     </ul>
                 </div>
             </div>

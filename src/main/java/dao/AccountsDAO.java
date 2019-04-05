@@ -11,7 +11,7 @@ public class AccountsDAO {
         Connection conn = DbConnection.getDbConnection("mysql");
         Statement statement = null;
         try {
-            String sql = "select uid,password from accounts where uid = '" + username + "';";
+            String sql = "select username,password from user where username = '" + username + "';";
             statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
 
