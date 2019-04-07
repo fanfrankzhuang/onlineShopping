@@ -2,6 +2,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="bean.Product" %>
 <%@ page import="java.util.Iterator" %>
+<%@ page import="dao.ProductsDAO" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -174,11 +175,17 @@
                 <%
                         }
                     } else {
+                            ProductsDAO productsDAO = new ProductsDAO();
+                            ArrayList<Product> products = productsDAO.getTrendingProducts();
+                            if (products != null) {
+                                Iterator<Product> iterator = products.iterator();
+                                while (iterator.hasNext()) {
+                                    Product product = iterator.next();
                 %>
                 <div class="col-md-6 col-lg-4">
                     <div class="card text-center card-product">
                         <div class="card-product__img">
-                            <img class="card-img" src="img/product/product1.png" alt="">
+                            <img class="card-img" src="<%=product.getImgUrl()%>" alt="">
                             <ul class="card-product__imgOverlay">
                                 <li><button><i class="ti-search"></i></button></li>
                                 <li><button><i class="ti-shopping-cart"></i></button></li>
@@ -186,13 +193,18 @@
                             </ul>
                         </div>
                         <div class="card-body">
-                            <p>Accessories</p>
-                            <h4 class="card-product__title"><a href="#">Quartz Belt Watch</a></h4>
-                            <p class="card-product__price">$150.00</p>
+                            <p><%=product.getCategory()%></p>
+                            <h4 class="card-product__title"><a href="/OnlineShopping/productdetail?productId=<%=product.getProductId()%>"><%=product.getPurductName()%></a></h4>
+                            <p class="card-product__price">$<%=product.getPrice()%></p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
+                <%
+                                }
+                            }
+                    }
+                %>
+                <%--<div class="col-md-6 col-lg-4">
                     <div class="card text-center card-product">
                         <div class="card-product__img">
                             <img class="card-img" src="img/product/product2.png" alt="">
@@ -331,7 +343,7 @@
                 <%
                         }
 
-                %>
+                %>--%>
             </div>
           </section>
           <!-- End Best Seller -->

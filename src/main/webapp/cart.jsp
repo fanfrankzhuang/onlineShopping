@@ -79,7 +79,7 @@
                           <td>
                               <div class="media">
                                   <div class="d-flex">
-                                      <img src="<%=product.getImgUrl()%>" alt="">
+                                      <img src="<%=product.getImgUrl()%>" alt="" style="width:100px;height:100px;">
                                   </div>
                                   <div class="media-body">
                                       <p><%=product.getPurductName()%></p>
@@ -165,8 +165,8 @@
                           </td>
                           <td>
                               <div class="checkout_btn_inner d-flex align-items-center">
-                                  <a class="gray_btn" href="/index.jsp">Continue Shopping</a>
-                                  <a class="primary-btn ml-2" href="#">Proceed to checkout</a>
+                                  <a class="gray_btn" href="/OnlineShopping/index.jsp">Continue Shopping</a>
+                                  <a class="primary-btn ml-2" href="/OnlineShopping/checkout">Proceed to checkout</a>
                               </div>
                           </td>
                       </tr>
@@ -179,7 +179,9 @@
                         <%
                           } else {
                               %>
+                            <br/><br/>
                         <h2 type="text-align：center">Your Shopping Cart is empty.</h2>
+                        <br/><br/>
                     <%
                           }
                       %>

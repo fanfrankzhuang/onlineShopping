@@ -27,7 +27,7 @@ public class Register extends HttpServlet {
         account.setEmail(email);
         account.setPhonenumber(phonenumber);
         account.setAddress(address);
-        account.setType(2);
+        account.setIsAdmin(2);
 
         Connection conn = DbConnection.getDbConnection("mysql");
 

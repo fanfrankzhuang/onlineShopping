@@ -1,3 +1,11 @@
+<%@ page import="dao.OrderDAO" %>
+<%@ page import="bean.Order" %>
+<%@ page import="java.lang.reflect.Array" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="bean.OrderDetail" %>
+<%@ page import="java.util.Iterator" %>
+<%@ page import="bean.Product" %>
+<%@ page import="dao.ProductsDAO" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,61 +27,7 @@
 </head>
 <body>
   <!--================ Start Header Menu Area =================-->
-	<header class="header_area">
-    <div class="main_menu">
-      <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-          <a class="navbar-brand logo_h" href="index.jsp"><img src="img/logo.png" alt=""></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-            <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-              <li class="nav-item"><a class="nav-link" href="index.jsp">Home</a></li>
-              <li class="nav-item active submenu dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                  aria-expanded="false">Shop</a>
-                <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="category.jsp">Shop Category</a></li>
-                  <li class="nav-item"><a class="nav-link" href="single-product.jsp">Product Details</a></li>
-                  <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
-                  <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
-                  <li class="nav-item"><a class="nav-link" href="cart.jsp">Shopping Cart</a></li>
-                </ul>
-							</li>
-              <li class="nav-item submenu dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                  aria-expanded="false">Blog</a>
-                <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                  <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
-                </ul>
-							</li>
-							<li class="nav-item submenu dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                  aria-expanded="false">Pages</a>
-                <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="login.jsp">Login</a></li>
-                  <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
-                  <li class="nav-item"><a class="nav-link" href="tracking-order.html">Tracking</a></li>
-                </ul>
-              </li>
-              <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-            </ul>
-
-            <ul class="nav-shop">
-              <li class="nav-item"><button><i class="ti-search"></i></button></li>
-              <li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button> </li>
-              <li class="nav-item"><a class="button button-header" href="#">Buy Now</a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </div>
-  </header>
+	<%@include file="header.jsp"%>
 	<!--================ End Header Menu Area =================-->
   
 	<!-- ================ start banner area ================= -->	
@@ -93,6 +47,14 @@
     </div>
 	</section>
 	<!-- ================ end banner area ================= -->
+
+  <!-- Get the order information -->
+  <%
+      int orderid = (int)request.getAttribute("orderid");
+      OrderDAO orderDAO = new OrderDAO();
+      Order order = orderDAO.getOrderById(orderid);
+      ArrayList<OrderDetail> orderDetails = orderDAO.getOrderDetailById(orderid);
+  %>
   
   <!--================Order Details Area =================-->
   <section class="order_details section-margin--small">
@@ -105,19 +67,19 @@
             <table class="order-rable">
               <tr>
                 <td>Order number</td>
-                <td>: 60235</td>
+                <td>: <%=order.getOrderId()%></td>
               </tr>
               <tr>
                 <td>Date</td>
-                <td>: Oct 03, 2017</td>
+                <td>: <%=order.getOrderDate()%></td>
               </tr>
               <tr>
                 <td>Total</td>
-                <td>: USD 2210</td>
+                <td>: CAD <%=order.getTotalAmount()%></td>
               </tr>
               <tr>
                 <td>Payment method</td>
-                <td>: Check payments</td>
+                <td>: <%=order.getPaymentMethod()%></td>
               </tr>
             </table>
           </div>
@@ -128,19 +90,19 @@
             <table class="order-rable">
               <tr>
                 <td>Street</td>
-                <td>: 56/8 panthapath</td>
+                <td>: <%=order.getStreet()%></td>
               </tr>
               <tr>
                 <td>City</td>
-                <td>: Dhaka</td>
+                <td>: <%=order.getCity()%></td>
               </tr>
               <tr>
                 <td>Country</td>
-                <td>: Bangladesh</td>
+                <td>: Canada</td>
               </tr>
               <tr>
                 <td>Postcode</td>
-                <td>: 1205</td>
+                <td>: <%=order.getPostCode()%></td>
               </tr>
             </table>
           </div>
@@ -151,19 +113,19 @@
             <table class="order-rable">
               <tr>
                 <td>Street</td>
-                <td>: 56/8 panthapath</td>
+                <td>: <%=order.getStreet()%></td>
               </tr>
               <tr>
                 <td>City</td>
-                <td>: Dhaka</td>
+                <td>: <%=order.getCity()%></td>
               </tr>
               <tr>
                 <td>Country</td>
-                <td>: Bangladesh</td>
+                <td>: Canada</td>
               </tr>
               <tr>
                 <td>Postcode</td>
-                <td>: 1205</td>
+                <td>: <%=order.getPostCode()%></td>
               </tr>
             </table>
           </div>
@@ -181,39 +143,28 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+            <%
+                ProductsDAO productsDAO = new ProductsDAO();
+                Iterator<OrderDetail> it = orderDetails.iterator();
+                while (it.hasNext()) {
+                    OrderDetail orderDetail = it.next();
+                    String prodId = String.valueOf(orderDetail.getProdId());
+                    Product product = productsDAO.getProductsById(prodId);
+                    %>
+            <tr>
                 <td>
-                  <p>Pixelstore fresh Blackberry</p>
+                    <p><%=product.getPurductName()%></p>
                 </td>
                 <td>
-                  <h5>x 02</h5>
+                    <h5>x <%=orderDetail.getQty()%></h5>
                 </td>
                 <td>
-                  <p>$720.00</p>
+                    <p>$<%=orderDetail.getQty() * orderDetail.getPrice()%></p>
                 </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>Pixelstore fresh Blackberry</p>
-                </td>
-                <td>
-                  <h5>x 02</h5>
-                </td>
-                <td>
-                  <p>$720.00</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>Pixelstore fresh Blackberry</p>
-                </td>
-                <td>
-                  <h5>x 02</h5>
-                </td>
-                <td>
-                  <p>$720.00</p>
-                </td>
-              </tr>
+            </tr>
+            <%
+                }
+            %>
               <tr>
                 <td>
                   <h4>Subtotal</h4>
@@ -222,7 +173,7 @@
                   <h5></h5>
                 </td>
                 <td>
-                  <p>$2160.00</p>
+                  <p>$<%=order.getTotalAmount()%></p>
                 </td>
               </tr>
               <tr>
@@ -244,7 +195,7 @@
                   <h5></h5>
                 </td>
                 <td>
-                  <h4>$2210.00</h4>
+                  <h4>$<%=order.getTotalAmount() + 50%></h4>
                 </td>
               </tr>
             </tbody>

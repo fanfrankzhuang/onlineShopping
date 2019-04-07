@@ -12,7 +12,7 @@ public class UsersTable {
             stmt.setString(1, account.getUid());
             stmt.setString(2, account.getUsername());
             stmt.setString(3, account.getPassword());
-            stmt.setInt(4, account.getType());
+            stmt.setInt(4, account.getIsAdmin());
             stmt.setString(5, account.getPhonenumber());
             stmt.setString(6, account.getEmail());
             stmt.setString(7, account.getAddress());

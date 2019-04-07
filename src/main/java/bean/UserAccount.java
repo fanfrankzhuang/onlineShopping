@@ -4,7 +4,7 @@ public class UserAccount {
     String uid;
     String username;
     String password;
-    int type;
+    int isAdmin;
     String phonenumber;
     String email;
     String address;
@@ -33,12 +33,12 @@ public class UserAccount {
         this.password = password;
     }
 
-    public int getType() {
-        return type;
+    public int getIsAdmin() {
+        return isAdmin;
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public void setIsAdmin(int type) {
+        this.isAdmin = type;
     }
 
     public String getPhonenumber() {

@@ -24,6 +24,7 @@ public class LoginServlet extends HttpServlet{
 			request.setAttribute("resultCode", result);
 			if (result == 0) {
 				Cookie cookie = new Cookie("uid", username);
+                cookie.setMaxAge(60*60*24);
 				response.addCookie(cookie);
 				response.sendRedirect("index.jsp");
 			} else {

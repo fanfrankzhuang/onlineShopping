@@ -56,7 +56,7 @@ public class SendEmail extends HttpServlet{
             Session session = Session.getInstance(props, new javax.mail.Authenticator(){
                 protected PasswordAuthentication getPasswordAuthentication()
                 {
-                    return new PasswordAuthentication(fromAddress,"woshi_ZF!");
+                    return new PasswordAuthentication(fromAddress,"******");
                 }
             });
 

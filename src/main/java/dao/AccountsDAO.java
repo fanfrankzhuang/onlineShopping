@@ -1,5 +1,7 @@
 package dao;
 
+import bean.UserAccount;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,5 +31,27 @@ public class AccountsDAO {
             e.getStackTrace();
         }
         return result;
+    }
+
+    public UserAccount getUser(String uid) throws SQLException, ClassNotFoundException {
+        UserAccount user = new UserAccount();
+        Connection conn = DbConnection.getDbConnection("mysql");
+        Statement statement = null;
+        try {
+            String sql = "select uid,username,password,email, phone,isAdmin,address from user where username = '" + uid + "';";
+            statement = conn.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            if (resultSet.next()) {
+                user.setUid(resultSet.getString("uid"));
+                user.setUsername(resultSet.getString("username"));
+                user.setIsAdmin(resultSet.getInt("isAdmin"));
+                user.setAddress(resultSet.getString("address"));
+                user.setPhonenumber(resultSet.getString("phone"));
+                user.setEmail(resultSet.getString("email"));
+            }
+        } catch (Exception e) {
+            e.getStackTrace();
+        }
+        return user;
     }
 }

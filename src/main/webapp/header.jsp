@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.util.TreeMap" %><%--
   Created by IntelliJ IDEA.
   User: zhuangfan
   Date: 2019/3/21
@@ -22,6 +22,19 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                <%
+                    Cookie[] cookies = request.getCookies();
+                    Cookie cookie = null;
+                    boolean hasCookie = false;
+                    for (int i=0; i< cookies.length;i++) {
+                        if (cookies[i].getName().equals("uid")) {
+                            hasCookie = true;
+                            cookie = cookies[i];
+                            break;
+                        }
+
+                    }
+                %>
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
                         <li class="nav-item active"><a class="nav-link" href="index.jsp">Home</a></li>
@@ -32,7 +45,7 @@
                                 <li class="nav-item"><a class="nav-link" href="category.jsp">Shop Category</a></li>
                                 <li class="nav-item"><a class="nav-link" href="single-product.jsp">Product Details</a></li>
                                 <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
-                                <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
+                                <li class="nav-item"><a class="nav-link" href="confirmation.jsp">Confirmation</a></li>
                                 <li class="nav-item"><a class="nav-link" href="cart.jsp">Shopping Cart</a></li>
                             </ul>
                         </li>
@@ -58,8 +71,31 @@
 
                     <ul class="nav-shop">
                         <li class="nav-item"><button><i class="ti-search"></i></button></li>
-                        <li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button> </li>
-                        <li class="nav-item"><a href="login.jsp">Log in|</a><a href="register.html">Sign up</a></li>
+                        <%
+                            TreeMap<String, Integer> cartsNo =
+                                    (TreeMap<String, Integer>) request.getSession().getAttribute("cart");
+                            if (cartsNo != null && cartsNo.size() != 0) {
+                        %>
+                        <li class="nav-item"><button href="/OnlineShopping/cart.jsp"><i class="ti-shopping-cart"></i><span class="nav-shop__circle"><%=cartsNo.size()%></span></button> </li>
+                        <%
+                            } else {
+                                %>
+                        <li class="nav-item"><button href="/OnlineShopping/cart.jsp"><i class="ti-shopping-cart"></i></button> </li>
+                        <%
+                            }
+                        %>
+                         <%
+                            if (hasCookie) {
+                                %>
+                        <li class="nav-item"><%=cookie.getValue()%> | <a href="/OnlineShopping/logout"> Log out</a></li>
+                        <%
+                            }else {
+                                %>
+                        <li class="nav-item"><a href="login.jsp">Log in | </a><a href="register.html"> Sign up</a></li>
+                        <%
+                            }
+                        %>
+
                     </ul>
                 </div>
             </div>
