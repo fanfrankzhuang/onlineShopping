@@ -153,7 +153,7 @@
                     %>
             <tr>
                 <td>
-                    <p><%=product.getPurductName()%></p>
+                    <p><%=product.getProductName()%></p>
                 </td>
                 <td>
                     <h5>x <%=orderDetail.getQty()%></h5>

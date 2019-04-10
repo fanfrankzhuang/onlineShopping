@@ -43,7 +43,7 @@
                                aria-expanded="false">Shop</a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item"><a class="nav-link" href="category.jsp">Shop Category</a></li>
-                                <li class="nav-item"><a class="nav-link" href="single-product.jsp">Product Details</a></li>
+                                <li class="nav-item"><a class="nav-link" href="productmanagement.jsp">Product Management</a></li>
                                 <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
                                 <li class="nav-item"><a class="nav-link" href="confirmation.jsp">Confirmation</a></li>
                                 <li class="nav-item"><a class="nav-link" href="cart.jsp">Shopping Cart</a></li>
@@ -62,11 +62,11 @@
                                aria-expanded="false">Pages</a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item"><a class="nav-link" href="login.jsp">Login</a></li>
-                                <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
+                                <li class="nav-item"><a class="nav-link" href="register.jsp">Register</a></li>
                                 <li class="nav-item"><a class="nav-link" href="tracking-order.html">Tracking</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.jsp">Contact</a></li>
                     </ul>
 
                     <ul class="nav-shop">
@@ -91,7 +91,7 @@
                         <%
                             }else {
                                 %>
-                        <li class="nav-item"><a href="login.jsp">Log in | </a><a href="register.html"> Sign up</a></li>
+                        <li class="nav-item"><a href="login.jsp">Log in | </a><a href="register.jsp"> Sign up</a></li>
                         <%
                             }
                         %>

@@ -123,7 +123,9 @@
               </div>
               <div class="card-body">
                 <p><%=product.getCategory()%></p>
-                <h4 class="card-product__title"><a href="/OnlineShopping/productdetail?productId=<%=product.getProductId()%>"><%=product.getPurductName()%></a></h4>
+                <h4 class="card-product__title">
+                    <a href="/OnlineShopping/productdetail?productId=<%=product.getProductId()%>"><%=product.getProductName()%></a>
+                </h4>
                 <p class="card-product__price">$<%=product.getPrice()%></p>
               </div>
             </div>

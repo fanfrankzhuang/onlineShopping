@@ -82,7 +82,7 @@
                                       <img src="<%=product.getImgUrl()%>" alt="" style="width:100px;height:100px;">
                                   </div>
                                   <div class="media-body">
-                                      <p><%=product.getPurductName()%></p>
+                                      <p><%=product.getProductName()%></p>
                                   </div>
                               </div>
                           </td>

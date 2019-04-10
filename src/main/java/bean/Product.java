@@ -2,10 +2,21 @@ package bean;
 
 public class Product {
     String productId;
-    String purductName;
+    String productName;
     String imgUrl;
     Double price;
     String category;
+    String description;
+    String color;
+    int availability;
+
+    public int getAvailability() {
+        return availability;
+    }
+
+    public void setAvailability(int availability) {
+        this.availability = availability;
+    }
 
     public String getDescription() {
         return description;
@@ -15,7 +26,13 @@ public class Product {
         this.description = description;
     }
 
-    String description;
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
 
     public String getProductId() {
         return productId;
@@ -25,12 +42,12 @@ public class Product {
         this.productId = productId;
     }
 
-    public String getPurductName() {
-        return purductName;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setPurductName(String purductName) {
-        this.purductName = purductName;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public String getImgUrl() {

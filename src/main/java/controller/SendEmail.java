@@ -10,22 +10,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Properties;
 
 
 public class SendEmail extends HttpServlet{
     public void doMethod(HttpServletRequest request, HttpServletResponse response) throws IOException
     {
-        String name = request.getParameter("Name");
+        String name = request.getParameter("name");
         //String phonenumber = request.getParameter("PhoneNumber");
-        String email = request.getParameter("FromEmailAddress");
-        String comments = request.getParameter("Comments");
+        String email = request.getParameter("email");
+        String subject = request.getParameter("subject");
+        String message = request.getParameter("message");
 
-        String[] recepients = new String[]{"C0735444@mylambton.ca"};
-        String [] bccRecepients = new String[]{"lambtoncollegeintoronto@gmail.com"};
-        if(sendMail(recepients,bccRecepients,"Comment", comments, email,name)) {
-            response.sendRedirect("welcome.html");
+        String fromEmail = "onlineshopping.unbeatables@gmail.com";
+        String[] recepients = new String[]{email};
+        String [] bccRecepients = new String[]{};
+        if(sendMail(recepients,bccRecepients,subject, message, fromEmail,name)) {
+            response.sendRedirect("index.jsp");
         } else {
             response.sendRedirect("error.html");
         };
@@ -56,7 +57,7 @@ public class SendEmail extends HttpServlet{
             Session session = Session.getInstance(props, new javax.mail.Authenticator(){
                 protected PasswordAuthentication getPasswordAuthentication()
                 {
-                    return new PasswordAuthentication(fromAddress,"******");
+                    return new PasswordAuthentication(fromAddress,"Qwertyuio@12");
                 }
             });
 
@@ -79,6 +80,7 @@ public class SendEmail extends HttpServlet{
                 msg.setRecipients(Message.RecipientType.BCC, bccAddresses);
             }
             msg.setSubject(subject);
+            message = "Hello, " + name +"\n\nThank you for your feedback.\n\n##################################\n\n" + message;
             msg.setContent(message,"text/plain");
             Transport.send(msg);
             return true;
@@ -91,4 +93,3 @@ public class SendEmail extends HttpServlet{
     }
 
 }
-

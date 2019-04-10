@@ -2,10 +2,7 @@ package dao;
 
 import bean.Product;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class ProductsDAO {
@@ -14,7 +11,7 @@ public class ProductsDAO {
         Connection conn = DbConnection.getDbConnection("mysql");
         Statement statement = null;
         try {
-            String sql = "select prod_id, product_name, price, img_url, category from products where category='"
+            String sql = "select prod_id, product_name, price, img_url, category,color from products where category='"
                     + category + "';";
             statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
@@ -22,26 +19,18 @@ public class ProductsDAO {
             while (resultSet.next()) {
                 Product product = new Product();
                 product.setProductId(resultSet.getString("prod_id"));
-                product.setPurductName(resultSet.getString("product_name"));
+                product.setProductName(resultSet.getString("product_name"));
                 product.setPrice(resultSet.getDouble("price"));
                 product.setImgUrl(resultSet.getString("img_url"));
                 product.setCategory(resultSet.getString("category"));
+                product.setColor(resultSet.getString("color"));
                 products.add(product);
             }
         } catch (Exception e) {
             e.getStackTrace();
         }
         return products;
-        //test code
-/*        ArrayList<Product> testProducts = new ArrayList<>();
-        Product testProduct1 = new Product();
-        testProduct1.setCategory("Men");
-        testProduct1.setImgUrl("img/product/product1.png");
-        testProduct1.setPrice(150.00);
-        testProduct1.setProductId("1");
-        testProduct1.setPurductName("Quartz Belt Watch");
-        testProducts.add(testProduct1);
-        return testProducts;*/
+
     }
 
     public ArrayList<Product> getProductsByName (String productName) throws SQLException, ClassNotFoundException {
@@ -49,7 +38,7 @@ public class ProductsDAO {
         Connection conn = DbConnection.getDbConnection("mysql");
         Statement statement;
         try {
-            String sql = "select prod_id, product_name, price, img_url, category from products " +
+            String sql = "select prod_id, product_name, price, img_url, category, color from products " +
                     "where product_name like '%" + productName + "%'";
             statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
@@ -57,26 +46,18 @@ public class ProductsDAO {
             while (resultSet.next()) {
                 Product product = new Product();
                 product.setProductId(resultSet.getString("prod_id"));
-                product.setPurductName(resultSet.getString("product_name"));
+                product.setProductName(resultSet.getString("product_name"));
                 product.setPrice(resultSet.getDouble("price"));
                 product.setImgUrl(resultSet.getString("img_url"));
                 product.setCategory(resultSet.getString("category"));
+                product.setColor(resultSet.getString("color"));
                 products.add(product);
             }
         } catch (Exception e) {
             e.getStackTrace();
         }
         return products;
-        //test code
-/*        ArrayList<Product> testProducts = new ArrayList<>();
-        Product testProduct1 = new Product();
-        testProduct1.setCategory("Men");
-        testProduct1.setImgUrl("img/product/product1.png");
-        testProduct1.setPrice(150.00);
-        testProduct1.setProductId("1");
-        testProduct1.setPurductName("Quartz Belt Watch");
-        testProducts.add(testProduct1);
-        return testProducts;*/
+
     }
 
     public Product getProductsById (String productId) throws SQLException, ClassNotFoundException {
@@ -84,31 +65,26 @@ public class ProductsDAO {
         Connection conn = DbConnection.getDbConnection("mysql");
         Statement statement;
         try {
-            String sql = "select prod_id, product_name, price, img_url, category,description from products " +
+            String sql = "select prod_id, product_name, price, img_url, category,description,color,availability from products " +
                     "where prod_id = '" + productId + "'";
             statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
 
             while (resultSet.next()) {
                 product.setProductId(resultSet.getString("prod_id"));
-                product.setPurductName(resultSet.getString("product_name"));
+                product.setProductName(resultSet.getString("product_name"));
                 product.setPrice(resultSet.getDouble("price"));
                 product.setImgUrl(resultSet.getString("img_url"));
                 product.setCategory(resultSet.getString("category"));
                 product.setDescription(resultSet.getString("description"));
+                product.setColor(resultSet.getString("color"));
+                product.setAvailability(resultSet.getInt("availability"));
             }
         } catch (Exception e) {
             e.getStackTrace();
         }
         return product;
-        //test code
-/*        Product testProduct1 = new Product();
-        testProduct1.setCategory("Men");
-        testProduct1.setImgUrl("img/product/product1.png");
-        testProduct1.setPrice(150.00);
-        testProduct1.setProductId("1");
-        testProduct1.setPurductName("Quartz Belt Watch");
-        return testProduct1;*/
+
     }
 
     public ArrayList<Product> getTrendingProducts() throws SQLException, ClassNotFoundException {
@@ -116,39 +92,59 @@ public class ProductsDAO {
         Connection conn = DbConnection.getDbConnection("mysql");
         Statement statement;
         try {
-            String sql = "select prod_id, product_name, price, img_url, category from products limit 10;";
+            String sql = "select prod_id, product_name, price, img_url, category,color,availability,description" +
+                    " from products;";
             statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
 
             while (resultSet.next()) {
                 Product product = new Product();
                 product.setProductId(resultSet.getString("prod_id"));
-                product.setPurductName(resultSet.getString("product_name"));
+                product.setProductName(resultSet.getString("product_name"));
                 product.setPrice(resultSet.getDouble("price"));
                 product.setImgUrl(resultSet.getString("img_url"));
                 product.setCategory(resultSet.getString("category"));
+                product.setColor(resultSet.getString("color"));
+                product.setAvailability(resultSet.getInt("availability"));
+                product.setDescription(resultSet.getString("description"));
                 products.add(product);
             }
         } catch (Exception e) {
             e.getStackTrace();
         }
         return products;
-        //test code
-/*        ArrayList<Product> testProducts = new ArrayList<>();
-        Product testProduct1 = new Product();
-        testProduct1.setCategory("Men");
-        testProduct1.setImgUrl("img/product/product1.png");
-        testProduct1.setPrice(150.00);
-        testProduct1.setProductId("1");
-        testProduct1.setPurductName("Quartz Belt Watch");
-        testProducts.add(testProduct1);
-        Product testProduct2 = new Product();
-        testProduct2.setCategory("Beauty");
-        testProduct2.setImgUrl("img/product/product2.png");
-        testProduct2.setPrice(160.00);
-        testProduct2.setProductId("2");
-        testProduct2.setPurductName("Women Freshwash");
-        testProducts.add(testProduct2);
-        return testProducts;*/
+
+    }
+
+    public int updateProductById(Product product) throws SQLException, ClassNotFoundException {
+        Connection conn = DbConnection.getDbConnection("mysql");
+        PreparedStatement stmt = null;
+        try {
+
+            stmt = conn.prepareStatement("update products set product_name = ?, category = ?, color = ?, " +
+                    "availability = ?, img_url = ?, price = ?, description = ? where prod_id = ?");
+            stmt.setString(1, product.getProductName());
+            stmt.setString(2, product.getCategory());
+            stmt.setString(3, product.getColor());
+            stmt.setInt(4, product.getAvailability());
+            stmt.setString(5, product.getImgUrl());
+            stmt.setDouble(6, product.getPrice());
+            stmt.setString(7, product.getDescription());
+            stmt.setString(8, product.getProductId());
+
+            stmt.executeUpdate();
+
+        } catch (Exception e) {
+            e.getStackTrace();
+            return -1;
+
+        } finally {
+            try {
+                stmt.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return 0;
     }
 }
